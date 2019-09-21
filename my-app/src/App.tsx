@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PokemanList from "./Components/PokemanList";
 import axios from "axios";
-import { awaitExpression } from "@babel/types";
 import Pagination from "./Components/Pagination";
+import { Pokemon, Result } from "./models/model";
 
 const App: React.FC = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
       })
       .then(resp => {
         setIsLoading(false);
-        setPokemon(resp.data.results.map((pk: any) => pk.name));
+        setPokemon(resp.data.results.map((pk: Result) => pk.name));
         setNextPageURL(resp.data.next);
         setPreviousPageURL(resp.data.previous);
       });
